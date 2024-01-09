@@ -3,36 +3,59 @@
 2) ajoute  a alatoire entre le joueur 1 est le joueur 2
 3) débute la partie entre les joueurs
 */
-// Déclaration des constantes pour les scores, le score actuel, le joueur actif et l'état du jeu
-const scores = [0, 0];
-let roundScore = 0;
-let activePlayer = 0;
-let gamePlaying = true;
+let scores, roundScore, activePlayer, gamePlaying;
 
-// Fonction d'initialisation
-function init() {
-    scores[0] = 0;
-    scores[1] = 0;
-    activePlayer = 0;
+// Initialisation du jeu
+init();
+
+// Ajout d'un écouteur d'événement pour le bouton "Roll dice"
+document.querySelector('.btn-roll').addEventListener('click', rollDice);
+
+// Ajout d'un écouteur d'événement pour le bouton "New game"
+document.querySelector('.btn-new').addEventListener('click', init);
+
+// Ajout d'un écouteur d'événement pour le bouton "Hold"
+document.querySelector('.btn-hold').addEventListener('click', hold);
+
+
+// Fonction pour simuler le lancer de dé
+function rollDice() {
+    if (gamePlaying) {
+        // Génération d'un nombre aléatoire entre 1 et 6 (simulant un lancer de dé)
+        const diceResult = Math.floor(Math.random() * 6) + 1;
+
+        // Sélection de l'élément image du dé
+        const diceImage = document.getElementById('diceImage');
+        
+        // Mise à jour de l'image du dé en fonction du résultat du lancer
+        diceImage.src = `./assets/image/dice-${diceResult}.png`;
+
+        if (diceResult !== 1) {
+            // Ajout du résultat au score du tour actuel
+            roundScore += diceResult;
+            document.getElementById('current-' + activePlayer).textContent = roundScore;
+        } else {
+            // Passage au joueur suivant si le dé affiche 1
+            nextPlayer();
+        }
+    }
+}
+
+// Fonction pour passer au joueur suivant
+function nextPlayer() {
+    // Changement du joueur actif
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
-    gamePlaying = true;
-
-    // Cacher l'image du dé
-    document.querySelector('.dice').style.display = 'none';
-
-    // Réinitialiser l'affichage des scores et noms des joueurs
-    document.getElementById('score-0').textContent = '0';
-    document.getElementById('score-1').textContent = '0';
+    
+    // Mise à jour de l'affichage du score du tour actuel
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
-    document.getElementById('name-0').textContent = 'Player 1';
-    document.getElementById('name-1').textContent = 'Player 2';
-
-    // Réinitialiser les classes des panneaux
-    document.querySelector('.player-0-panel').classList.remove('winner');
-    document.querySelector('.player-1-panel').classList.remove('winner');
-    document.querySelector('.player-0-panel').classList.remove('active');
-    document.querySelector('.player-1-panel').classList.remove('active');
-    document.querySelector('.player-0-panel').classList.add('active');
+    
+    // Changement de la classe "active" pour les panneaux des joueurs
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+    
+    // Réinitialisation de l'image du dé
+    document.getElementById('diceImage').src = '';
 }
 
