@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d3e5723829.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Jost:wght@200&family=Lato:wght@100&family=Oswald:wght@200&family=Roboto:Lato" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <title>Jeux de dés</title>
+</head>
+<body class="container text-center">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-md-6 player-panel active">
+            <div class="player-name" id="name-0">Player 1</div>
+            <div class="player-score" id="score-0">0</div>
+            <div class="player-current-box">
+                <div class="player-current-label">Current</div>
+                <div class="player-current-score" id="current-0">0</div>
+            </div>
+        </div>
+        
+        <div class="col-12 col-md-6 player-panel">
+            <div class="player-name" id="name-1">Player 2</div>
+            <div class="player-score" id="score-1">0</div>
+            <div class="player-current-box">
+                <div class="player-current-label">Current</div>
+                <div class="player-current-score" id="current-1">0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <button class="btn btn-new js-button">
+            <i class="fa-solid fa-circle-xmark" style="color: #bc1a22;"></i>New game
+        </button>
+        <img src="./image/dice-1.png" alt="dice" class="dice" id="diceimage">
+        <button class="btn btn-roll">
+            <i class="fa-solid fa-rotate" style="color: #c6151e;"></i>Roll dice
+        </button>
+        <button class="btn btn-hold">
+            <i class="fa-solid fa-right-from-bracket fa-rotate-90" style="color: #cb1a1a;"></i>Hold
+        </button>
+    </div>
+
+    
+    <script src="./script.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
